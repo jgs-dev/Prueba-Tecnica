@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Prueba-Tecnica-Desarrollador"
+    }
+  },
+  "defaultProject": "Prueba-Tecnica-Desarrollador",
+  "cli": {
+    "analytics": "674c3947-cc19-43da-a157-3e4c4d173f1e"
+  }
 }
