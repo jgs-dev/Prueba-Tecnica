@@ -1,6 +1,7 @@
 # PruebaTecnicaDesarrollador
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+Front end for Prueba tecnica
 
 ## Development server
 
