@@ -27,7 +27,11 @@ export class ServerService {
     return this.request('POST', `${environment.serverUrl}`, data)
   }
 
-  readPersona() {
+  readPersona(data) {
+    return this.request('GET', `${environment.serverUrl}`,data)
+  }
+
+  readPersonas() {
     return this.request('GET', `${environment.serverUrl}`)
   }
 
