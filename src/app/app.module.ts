@@ -6,8 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // angular material imports
-import { MatListModule } from "@angular/material/list";
-import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from "@angular/material/list"
+import { MatButtonModule } from '@angular/material/button'
+import { MatGridListModule } from '@angular/material/grid-list'
+//import {MatGridTileHarness} from '@angular/material/grid-list/testing/grid-tile-harness'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

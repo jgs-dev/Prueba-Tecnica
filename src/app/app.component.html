@@ -1,24 +1,36 @@
-<h1 class="mat-display-3">Prueba Tecnica</h1>
+<div class="container">
+  <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <h1 class="mat-display-3">Prueba Tecnica</h1>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2" [style.background]="color">
+      <mat-list>
+        <mat-list-item>
+          <label>Nombre</label>
+        </mat-list-item>
+        <mat-list-item>
+          <input type="text">
+        </mat-list-item>
+        <mat-list-item>
+          <label>Apellido</label>
+        </mat-list-item>
+        <mat-list-item>
+          <input type="text">
+        </mat-list-item>
+        <mat-list-item>
+          <label>Cedula</label>
+        </mat-list-item>
+        <mat-list-item>
+          <input type="number">
+        </mat-list-item>
+        <button expand="full" color="warn" mat-raised-button>Enviar Datos</button>
+      </mat-list>
 
-<mat-list>
-  <mat-list-item>
-    <label>Nombre</label>
-  </mat-list-item>
-  <mat-list-item>
-    <input type="text">
-  </mat-list-item>
-  <mat-list-item>
-    <label>Apellido</label>
-  </mat-list-item>
-  <mat-list-item>
-    <input type="text">
-  </mat-list-item>
-  <mat-list-item>
-    <label>Cedula</label>
-  </mat-list-item>
-  <mat-list-item>
-    <input type="number">
-  </mat-list-item>
-</mat-list>
 
-<button color="warn" mat-raised-button>Enviar Datos</button>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <button color="warn" mat-raised-button>Enviar Datos</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

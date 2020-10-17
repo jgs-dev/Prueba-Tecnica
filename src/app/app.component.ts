@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Prueba-Tecnica-Desarrollador';
+  color = "#F0F0F0"
 }
