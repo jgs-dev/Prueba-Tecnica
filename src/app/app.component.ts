@@ -1,5 +1,6 @@
 import { ServerService } from './services/server.service';
 import { Component } from '@angular/core';
+import { Persona } from './classes/Persona';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,10 @@ export class AppComponent {
    * variable for the grid background-color
    */
   color = "#F0F0F0"
+
+  personas: Persona[] = []
+
+
 
   constructor(private serverService: ServerService) {
 
@@ -31,8 +36,14 @@ export class AppComponent {
 
   private readPersonas() {
 
-    this.serverService.readPersonas().then((data) => {
-      console.log("leyo las personas", data)
+    this.serverService.readPersonas().then((data: any) => {
+      console.log("-----------------")
+      console.log(typeof data, data)
+      this.personas = data.map(persona => {
+        return new Persona(persona.id, persona.cedula, persona.nombre, persona.apellido)
+      })
+
+      console.log("-----------------")
     })
 
   }
@@ -60,6 +71,11 @@ export class AppComponent {
     })
   }
 
+  mostrarPersonas() {
+    this.personas.map((persona) => {
+      console.log(persona)
+    })
+  }
 
 
 

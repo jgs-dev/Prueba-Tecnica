@@ -23,13 +23,17 @@
         <mat-list-item>
           <input type="number">
         </mat-list-item>
-        <button expand="full" color="warn" mat-raised-button>Enviar Datos</button>
+        <button expand="full" color="warn" mat-raised-button (click)="mostrarPersonas()">Enviar Datos</button>
       </mat-list>
 
 
     </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-list-item *ngFor="let persona of personas">
+        {{persona.id}}
+      </mat-list-item>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
       <button color="warn" mat-raised-button (click)="createPersona()">Añadir Persona</button>
       <button color="warn" mat-raised-button (click)="updatePersona()">Editar Persona</button>
       <button color="warn" mat-raised-button (click)="deletePersona()">Eliminar Persona</button>
