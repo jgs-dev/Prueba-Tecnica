@@ -2,7 +2,7 @@ import { ServerService } from './services/server.service';
 import { Component, OnInit } from '@angular/core';
 import { Persona } from './classes/Persona';
 import { FormBuilder, Validators, Form, FormGroup } from '@angular/forms';
-import { } from "@angular/forms"
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap"
 
 @Component({
   selector: 'app-root',
@@ -24,13 +24,19 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(private serverService: ServerService, private formBuilder: FormBuilder) { }
+  constructor(private serverService: ServerService, private formBuilder: FormBuilder, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.readPersonas()
   }
 
   personaForm = this.formBuilder.group({
+    cedula: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/^[0-9]*$/)]],
+    nombre: ["", [Validators.required], Validators.pattern(/^([a-zA-Z]+\s{0,1}[a-zA-Z]+)$/)],
+    apellido: ["", [Validators.required]]
+  })
+
+  modalForm = this.formBuilder.group({
     cedula: ["", [Validators.required, Validators.minLength(6)]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]]
@@ -92,10 +98,32 @@ export class AppComponent implements OnInit {
     })
   }
 
+  openModal(element, content) {
 
-  test(element) {
-    console.log(element)
+    this.modalForm.controls["nombre"].setValue(element.nombre)
+    this.modalForm.controls["cedula"].setValue(element.cedula)
+    this.modalForm.controls["apellido"].setValue(element.apellido)
+
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      const persona = {
+        id: element.id,
+        cedula: this.modalForm.get("cedula").value,
+        nombre: this.modalForm.get("nombre").value,
+        apellido: this.modalForm.get("apellido").value
+      }
+      this.updatePersona(persona)
+
+    }, (reason) => {
+
+      alert("No se pudo editar!")
+    });
   }
 
+  closeModal() {
+    this.modalService.dismissAll()
+  }
 
+  test() {
+    alert("No se pudo editar!")
+  }
 }
