@@ -1,6 +1,9 @@
 const { ElementSchemaRegistry } = require('@angular/compiler')
 const express = require('express')
-
+/**
+ * has all the REST functions that we are going to use
+ * @param {mysql connection} db connection to the database 
+ */
 function createRouter(db) {
     const router = express.Router()
 

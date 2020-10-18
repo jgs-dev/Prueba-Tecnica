@@ -5,6 +5,9 @@ const mysql = require('mysql')
 
 const rest = require("./REST")
 
+/**
+ * @const connection has all the information to do the connection to our database
+ */
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -12,6 +15,9 @@ const connection = mysql.createConnection({
     database: 'gitei'
 })
 
+/**
+ * does the connection
+ */
 connection.connect((err) => {
     if (err)
         console.error(err)
@@ -20,7 +26,7 @@ connection.connect((err) => {
 })
 
 /**
- * set port
+ * sets port of our server
  */
 const port = 8080
 
@@ -31,7 +37,6 @@ const app = express()
     .use(cors())
     .use(bodyParser.json())
     .use(rest(connection))
-
 
 /**
  * Start the server in port

@@ -15,12 +15,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() { }
 
+  /**
+   * @var personaForm form of the data of the person to create, with its restrictions
+   */
   personaForm = this.formBuilder.group({
     cedula: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/^[0-9]*$/)]],
     nombre: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]],
     apellido: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]]
   })
 
+  /**
+   * calls the ADD method from REST to create a person in the database, then updates the table
+   */
   createPersona() {
     const persona = {
       cedula: +this.personaForm.get("cedula").value,
@@ -33,27 +39,5 @@ export class AppComponent implements OnInit {
       console.log(res)
     })
   }
-
-
-  updatePersona(persona) {
-
-    const auxPersona = {
-      id: persona.id,
-      cedula: persona.cedula,
-      nombre: persona.nombre,
-      apellido: persona.apellido
-    }
-    this.serverService.updatePersona(persona).then((res) => {
-      console.log(res)
-    })
-  }
-
-  deletePersona(id) {
-    const data = {
-      id: id
-    }
-    this.serverService.deletePersona(data).then((res) => {
-      console.log(res)
-    })
-  }
+  
 }
