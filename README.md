@@ -1,6 +1,6 @@
 # PruebaTecnicaDesarrollador
 
-This project was generated is a full-stack done with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7. express/node.js and MySql for a work test to Diego Castellanos
+This project is a full-stack done with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7. express/node.js and MySql for a work test to Diego Castellanos
 
 ## How to setup
 
