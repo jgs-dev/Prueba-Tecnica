@@ -1,29 +1,18 @@
 # PruebaTecnicaDesarrollador
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
-Front end for Prueba tecnica
+This project was generated is a full-stack done with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7. express/node.js and MySql for a work test to Diego Castellanos
 
-## Development server
+## How to setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Run `npm install` to install all the dependencies for the front-end part of the app (angular), then navigate to Prueba-Tecnica-Server and  run `npm install` to install all the server-dependencies (node.js/express). Then create your MySQL database, this is the commands I used to create it
+`create database gitei charset utf8 collate utf8_spanish_ci;
+use gitei;
+create table personas(
+	id int primary key auto_increment,
+    cedula bigint not null,
+    nombre varchar(100) not null,
+    apellido varchar(100) not null
+);` afterwards start your database. 
+- Go to Prueba-Tecnica-Server/src/index.js and change the `connection` data with your own login for the database.
+- Run `ng serve --open`, you should have a window in `http://localhost:4200/` with the app runnin.  
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-"Front Prueba Tecnica" 
