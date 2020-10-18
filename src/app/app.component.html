@@ -1,71 +1,82 @@
 <div class="container">
-  <mat-grid-list cols="2" rowHeight="200px">
-
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div>
       <h1 class="mat-display-3">Prueba Tecnica</h1>
-    </mat-grid-tile>
+    </div>
+  </div>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="2" [style.background]="color">
-      <mat-list>
-        <mat-list-item>
-          <label>Nombre</label>
-        </mat-list-item>
-        <mat-list-item>
-          <input type="text">
-        </mat-list-item>
-        <mat-list-item>
-          <label>Apellido</label>
-        </mat-list-item>
-        <mat-list-item>
-          <input type="text">
-        </mat-list-item>
-        <mat-list-item>
-          <label>Cedula</label>
-        </mat-list-item>
-        <mat-list-item>
-          <input type="number">
-        </mat-list-item>
-        <button expand="full" color="warn" mat-raised-button (click)="mostrarPersonas()">Ingresar Datos</button>
-      </mat-list>
-    </mat-grid-tile>
+  <div [formGroup]="personaForm">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <button color="warn" mat-raised-button (click)="createPersona()">Añadir Persona</button>
-      <button color="warn" mat-raised-button (click)="updatePersona()">Editar Persona</button>
-      <button color="warn" mat-raised-button (click)="deletePersona()">Eliminar Persona</button>
-    </mat-grid-tile>
+      <div fxLayout="row" fxLayoutAlign="space-between stretch">
+        <div fxLayout="column">
+          <mat-card class="cards">
+            <mat-card-title>Cedula</mat-card-title>
+            <mat-card-content><input formControlName="cedula" type="tel"></mat-card-content>
+          </mat-card>
+        </div>
+        <div>""</div>
+        <div fxLayout="column">
+          <mat-card class="cards">
+            <mat-card-title>Nombre</mat-card-title>
+            <mat-card-content><input formControlName="nombre" type="text"></mat-card-content>
+          </mat-card>
+        </div>
+        <div>""</div>
+        <div fxLayout="column">
+          <mat-card class="cards">
+            <mat-card-title>Apellido</mat-card-title>
+            <mat-card-content><input formControlName="apellido" type="text"></mat-card-content>
+          </mat-card>
+        </div>
+      </div>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <table mat-table [dataSource]="personas" class="mat-elevation-z8">
+      <div>
+        <button [disabled]="!personaForm.valid" color="warn" mat-raised-button (click)="createPersona()">Añadir Persona</button>
+      </div>
 
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
+    </div>
 
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center space-around">
+    <table fxFlex="<flex-grow> <flex-shrink> <flex-basic>" mat-table [dataSource]="personas" class="mat-elevation-z8">
 
-        <ng-container matColumnDef="apellido">
-          <th mat-header-cell *matHeaderCellDef> Apellido </th>
-          <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
-        </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
 
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="cedula">
-          <th mat-header-cell *matHeaderCellDef> Cedula </th>
-          <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
-        </ng-container>
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-grid-tile>
-    
-  </mat-grid-list>
+      <ng-container matColumnDef="cedula">
+        <th mat-header-cell *matHeaderCellDef> Cedula </th>
+        <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+      </ng-container>
 
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let element"><button (click)="deletePersona(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button> </td>
+      </ng-container>
 
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element"><button (click)="updatePersona(element)">
+            <mat-icon>edit</mat-icon>
+          </button> </td>
+      </ng-container>
 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 </div>

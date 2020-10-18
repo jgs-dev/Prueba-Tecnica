@@ -1,13 +1,15 @@
 import { ServerService } from './services/server.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Persona } from './classes/Persona';
+import { FormBuilder, Validators, Form, FormGroup } from '@angular/forms';
+import { } from "@angular/forms"
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   /**
    * @var color variable for the grid background-color
    */
@@ -16,21 +18,29 @@ export class AppComponent {
   /**
    * @var displayedColumns order of data to show in the table
    */
-  displayedColumns: string[] = ["id", "cedula", "nombre", "apellido"]
+  displayedColumns: string[] = ["id", "cedula", "nombre", "apellido", "editar", "eliminar"]
 
   personas: Persona[] = []
 
 
 
-  constructor(private serverService: ServerService) {
+  constructor(private serverService: ServerService, private formBuilder: FormBuilder) { }
 
+  ngOnInit() {
+    this.readPersonas()
   }
+
+  personaForm = this.formBuilder.group({
+    cedula: ["", [Validators.required, Validators.minLength(6)]],
+    nombre: ["", [Validators.required]],
+    apellido: ["", [Validators.required]]
+  })
 
   createPersona() {
     const persona = {
-      cedula: 1014259965,
-      nombre: "Test Angular",
-      apellido: "App"
+      cedula: +this.personaForm.get("cedula").value,
+      nombre: this.personaForm.get("nombre").value,
+      apellido: this.personaForm.get("apellido").value
     }
 
     this.serverService.createPersona(persona).then((res) => {
@@ -51,12 +61,14 @@ export class AppComponent {
 
   }
 
-  updatePersona() {
-    const persona = {
-      id: 9,
-      cedula: 123456,
-      nombre: "cambiado",
-      apellido: "cambiada"
+  updatePersona(persona) {
+
+    //modal
+    const auxPersona = {
+      id: persona.id,
+      cedula: persona.cedula,
+      nombre: persona.nombre,
+      apellido: persona.apellido
     }
     this.serverService.updatePersona(persona).then((res) => {
       console.log(res)
@@ -64,11 +76,11 @@ export class AppComponent {
     })
   }
 
-  deletePersona() {
-    const id = {
-      id: 9
+  deletePersona(id) {
+    const data = {
+      id: id
     }
-    this.serverService.deletePersona(id).then((res) => {
+    this.serverService.deletePersona(data).then((res) => {
       console.log(res)
       this.readPersonas()
     })
@@ -80,6 +92,10 @@ export class AppComponent {
     })
   }
 
+
+  test(element) {
+    console.log(element)
+  }
 
 
 }
