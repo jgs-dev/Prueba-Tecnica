@@ -16,12 +16,14 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatTableModule } from '@angular/material/table'
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from '@angular/material/icon';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableComponent } from './table/table.component'
 //import {MatGridTileHarness} from '@angular/material/grid-list/testing/grid-tile-harness'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

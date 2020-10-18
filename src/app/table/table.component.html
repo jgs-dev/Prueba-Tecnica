@@ -1,0 +1,80 @@
+<!--modal template-->
+<ng-template #content let-modal>
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Editar Usuario</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+        <div [formGroup]="modalForm" fxLayout="column" fxLayoutAlign="start">
+            <div>
+                <mat-card>
+                    <mat-card-title>Cedula <input formControlName="cedula" type="tel"></mat-card-title>
+                </mat-card>
+            </div>
+            <div>
+                <mat-card>
+                    <mat-card-title>Nombre <input formControlName="nombre" type="text"></mat-card-title>
+                </mat-card>
+            </div>
+            <div>
+                <mat-card>
+                    <mat-card-title>Apellido <input formControlName="apellido" type="text"></mat-card-title>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button [disabled]="!modalForm.valid" type="button" mat-raised-button color="warn"
+            (click)="modal.close()">Editar</button>
+    </div>
+</ng-template>
+<!--end modal template -->
+
+
+<div fxLayout="column" fxLayoutAlign="center space-around">
+    <table mat-table [dataSource]="personas" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cedula">
+            <th mat-header-cell *matHeaderCellDef> Cedula </th>
+            <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element"><button (click)="deletePersona(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Editar </th>
+            <td mat-cell *matCellDef="let element"><button (click)="openModal(element,content)">
+                    <mat-icon>edit</mat-icon>
+                </button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
