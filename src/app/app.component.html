@@ -45,9 +45,9 @@
   </div>
 
   <div [formGroup]="personaForm">
-    <div fxLayout="column" fxLayoutAlign="space-around center">
 
-      <div fxLayout="row" fxLayoutAlign="space-between stretch">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
         <div fxLayout="column">
           <mat-card class="cards">
             <mat-card-title>Cedula</mat-card-title>
@@ -80,7 +80,7 @@
 
   </div>
   <div fxLayout="column" fxLayoutAlign="center space-around">
-    <table fxFlex="<flex-grow> <flex-shrink> <flex-basic>" mat-table [dataSource]="personas" class="mat-elevation-z8">
+    <table mat-table [dataSource]="personas" class="mat-elevation-z8">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> Id </th>
