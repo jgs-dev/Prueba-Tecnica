@@ -9,9 +9,14 @@ import { Persona } from './classes/Persona';
 })
 export class AppComponent {
   /**
-   * variable for the grid background-color
+   * @var color variable for the grid background-color
    */
   color = "#F0F0F0"
+
+  /**
+   * @var displayedColumns order of data to show in the table
+   */
+  displayedColumns: string[] = ["id", "cedula", "nombre", "apellido"]
 
   personas: Persona[] = []
 
@@ -37,13 +42,11 @@ export class AppComponent {
   private readPersonas() {
 
     this.serverService.readPersonas().then((data: any) => {
-      console.log("-----------------")
-      console.log(typeof data, data)
+
       this.personas = data.map(persona => {
-        return new Persona(persona.id, persona.cedula, persona.nombre, persona.apellido)
+        return persona
       })
 
-      console.log("-----------------")
     })
 
   }

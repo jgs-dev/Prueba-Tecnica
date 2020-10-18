@@ -1,9 +1,11 @@
 <div class="container">
   <mat-grid-list cols="2" rowHeight="200px">
+
     <mat-grid-tile [colspan]="2" [rowspan]="1">
       <h1 class="mat-display-3">Prueba Tecnica</h1>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2" [style.background]="color">
+
+    <mat-grid-tile [colspan]="2" [rowspan]="2" [style.background]="color">
       <mat-list>
         <mat-list-item>
           <label>Nombre</label>
@@ -23,20 +25,47 @@
         <mat-list-item>
           <input type="number">
         </mat-list-item>
-        <button expand="full" color="warn" mat-raised-button (click)="mostrarPersonas()">Enviar Datos</button>
+        <button expand="full" color="warn" mat-raised-button (click)="mostrarPersonas()">Ingresar Datos</button>
       </mat-list>
-
-
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-      <mat-list-item *ngFor="let persona of personas">
-        {{persona.id}}
-      </mat-list-item>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
       <button color="warn" mat-raised-button (click)="createPersona()">Añadir Persona</button>
       <button color="warn" mat-raised-button (click)="updatePersona()">Editar Persona</button>
       <button color="warn" mat-raised-button (click)="deletePersona()">Eliminar Persona</button>
     </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <table mat-table [dataSource]="personas" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellido">
+          <th mat-header-cell *matHeaderCellDef> Apellido </th>
+          <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cedula">
+          <th mat-header-cell *matHeaderCellDef> Cedula </th>
+          <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-grid-tile>
+    
   </mat-grid-list>
+
+
+
 </div>

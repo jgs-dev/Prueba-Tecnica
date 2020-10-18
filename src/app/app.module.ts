@@ -11,6 +11,7 @@ import {HttpClientModule } from "@angular/common/http"
 import { MatListModule } from "@angular/material/list"
 import { MatButtonModule } from '@angular/material/button'
 import { MatGridListModule } from '@angular/material/grid-list'
+import {MatTableModule} from '@angular/material/table'
 //import {MatGridTileHarness} from '@angular/material/grid-list/testing/grid-tile-harness'
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatGridListModule } from '@angular/material/grid-list'
     HttpClientModule,
     MatListModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
