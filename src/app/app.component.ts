@@ -32,14 +32,14 @@ export class AppComponent implements OnInit {
 
   personaForm = this.formBuilder.group({
     cedula: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/^[0-9]*$/)]],
-    nombre: ["", [Validators.required], Validators.pattern(/^([a-zA-Z]+\s{0,1}[a-zA-Z]+)$/)],
-    apellido: ["", [Validators.required]]
+    nombre: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]],
+    apellido: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]]
   })
 
   modalForm = this.formBuilder.group({
-    cedula: ["", [Validators.required, Validators.minLength(6)]],
-    nombre: ["", [Validators.required]],
-    apellido: ["", [Validators.required]]
+    cedula: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/^[0-9]*$/)]],
+    nombre: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]],
+    apellido: ["", [Validators.required, Validators.pattern(/^([a-zA-Z]+\s*[a-zA-Z]+){1,}$/)]]
   })
 
   createPersona() {
@@ -69,7 +69,6 @@ export class AppComponent implements OnInit {
 
   updatePersona(persona) {
 
-    //modal
     const auxPersona = {
       id: persona.id,
       cedula: persona.cedula,
@@ -114,16 +113,12 @@ export class AppComponent implements OnInit {
       this.updatePersona(persona)
 
     }, (reason) => {
-
+      console.error(reason)
       alert("No se pudo editar!")
     });
   }
 
   closeModal() {
     this.modalService.dismissAll()
-  }
-
-  test() {
-    alert("No se pudo editar!")
   }
 }
