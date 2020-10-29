@@ -11,7 +11,7 @@ const rest = require("./REST")
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'InMortaLIty3.',
+    password: 'password',
     database: 'gitei'
 })
 
